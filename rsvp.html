@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Victoria & Devin — RSVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --linen:     #e8e0d5;
+    --taupe:     #c9bfb0;
+    --mauve:     #b07f8a;
+    --mauve-light: #d4a8b0;
+    --mauve-dark:  #7a4f58;
+    --gold:      #c9a84c;
+    --gold-light: #e8d5a0;
+    --gold-dark:  #8a6a20;
+    --terracotta: #c4622d;
+    --burgundy:  #6b2535;
+    --periwinkle: #8fa3c4;
+    --cream:     #f7f2eb;
+    --ink:       #2c1f1a;
+    --ink-mid:   #5c4a3a;
+    --ink-light: #8a7060;
+  }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse at 10% 20%, rgba(180,120,100,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(143,163,196,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
+  }
+
+  .page-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card {
+    background: rgba(247,242,235,0.92);
+    border: 1px solid var(--taupe);
+    border-radius: 2px;
+    max-width: 560px;
+    width: 100%;
+    padding: 56px 52px;
+    position: relative;
+    backdrop-filter: blur(4px);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .card-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .card-date {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--taupe));
+  }
+  .divider::after { background: linear-gradient(to left, transparent, var(--taupe)); }
+  .divider span {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .step { display: none; }
+  .step.active { display: block; animation: fadeUp 0.4s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mauve);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .step-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="text"], select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--taupe);
+    border-radius: 1px;
+    padding: 12px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  input[type="text"]:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.85);
+  }
+  input[type="text"]::placeholder, textarea::placeholder { color: var(--taupe); }
+  select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7060' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  textarea { resize: none; height: 80px; }
+
+  .code-input {
+    text-align: center;
+    font-size: 28px !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    letter-spacing: 8px;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+  }
+
+  .error-msg {
+    display: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--terracotta);
+    text-align: center;
+    margin-top: 12px;
+    font-style: italic;
+  }
+  .error-msg.show { display: block; }
+
+  .radio-group { display: flex; gap: 12px; margin-top: 4px; }
+  .radio-opt {
+    flex: 1;
+    border: 1px solid var(--taupe);
+    border-radius: 1px;
+    padding: 14px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.5);
+  }
+  .radio-opt:hover { border-color: var(--mauve-light); background: rgba(176,127,138,0.06); }
+  .radio-opt.selected { border-color: var(--mauve); background: rgba(176,127,138,0.12); }
+  .radio-opt .opt-icon { font-size: 20px; margin-bottom: 6px; }
+  .radio-opt .opt-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+    display: block;
+  }
+  .radio-opt .opt-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .guest-block {
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 1px;
+    padding: 20px;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.3);
+    display: none;
+  }
+  .guest-block.show { display: block; animation: fadeUp 0.3s ease; }
+  .guest-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--mauve-dark);
+    margin-bottom: 14px;
+  }
+  .guest-block label { margin-top: 12px; }
+  .guest-block label:first-of-type { margin-top: 0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .btn {
+    width: 100%;
+    margin-top: 32px;
+    padding: 16px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    border-radius: 1px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn:hover { background: var(--ink-mid); }
+  .btn:active { transform: scale(0.99); }
+  .btn.gold {
+    background: var(--gold-dark);
+    color: var(--cream);
+  }
+  .btn.gold:hover { background: var(--gold); }
+
+  .btn-ghost {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+    background: transparent;
+    color: var(--ink-mid);
+    border: 1px solid var(--taupe);
+    border-radius: 1px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--mauve-light); color: var(--mauve-dark); }
+
+  .thank-you-icon {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .thank-you-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .thank-you-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-light);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .thank-you-sub.sad { color: var(--mauve-dark); }
+
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--taupe);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .dot.active { background: var(--gold); transform: scale(1.3); }
+  .dot.done { background: var(--mauve-light); }
+
+  .sheet-note {
+    font-size: 11px;
+    color: var(--taupe);
+    text-align: center;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 40px 28px; }
+    .card-names { font-size: 32px; }
+    .two-col { grid-template-columns: 1fr; }
+    .radio-group { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="card">
+
+    <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <p class="card-title">You are invited to celebrate</p>
+    <h1 class="card-names">Victoria & Devin</h1>
+    <p class="card-date">August 4, 2028</p>
+
+    <!-- Progress dots (steps 1–3 only) -->
+    <div class="progress-dots" id="progressDots">
+      <div class="dot active" id="dot0"></div>
+      <div class="dot" id="dot1"></div>
+      <div class="dot" id="dot2"></div>
+    </div>
+
+    <!-- STEP 1: Code -->
+    <div class="step active" id="step-code">
+      <p class="step-label">Step 1 of 3</p>
+      <h2 class="step-heading">Enter your<br/>invitation code</h2>
+      <label for="rsvpCode">Your RSVP code</label>
+      <input type="text" id="rsvpCode" class="code-input" placeholder="· · · ·" maxlength="4" autocomplete="off"/>
+      <p class="error-msg" id="codeError">That code doesn't look right — please check your invitation card.</p>
+      <button class="btn gold" onclick="validateCode()">Continue</button>
+    </div>
+
+    <!-- STEP 2: Attending? -->
+    <div class="step" id="step-attend">
+      <p class="step-label">Step 2 of 3</p>
+      <h2 class="step-heading">Will you be joining us?</h2>
+      <div class="radio-group">
+        <div class="radio-opt" id="opt-yes" onclick="selectAttend('yes')">
+          <div class="opt-icon">🥂</div>
+          <span class="opt-label">Joyfully accepts</span>
+          <span class="opt-sub">Can't wait!</span>
+        </div>
+        <div class="radio-opt" id="opt-no" onclick="selectAttend('no')">
+          <div class="opt-icon">🌹</div>
+          <span class="opt-label">Regretfully declines</span>
+          <span class="opt-sub">Will be missed</span>
+        </div>
+      </div>
+      <p class="error-msg" id="attendError">Please make a selection to continue.</p>
+      <button class="btn gold" onclick="submitAttend()">Continue</button>
+    </div>
+
+    <!-- STEP DECLINE: Name for declining guests -->
+    <div class="step" id="step-decline">
+      <p class="step-label">One last thing</p>
+      <h2 class="step-heading">Who should we note<br/>as unable to attend?</h2>
+      <label for="declineName">Your name</label>
+      <input type="text" id="declineName" placeholder="Your full name"/>
+      <p class="error-msg" id="declineError">Please enter your name so we can note your RSVP.</p>
+      <button class="btn gold" onclick="submitDecline()">Send my RSVP</button>
+    </div>
+
+    <!-- STEP 3: Guest details -->
+    <div class="step" id="step-guests">
+      <p class="step-label">Step 3 of 3</p>
+      <h2 class="step-heading">Tell us who's coming</h2>
+
+      <label for="guestCount">How many from your party will attend?</label>
+      <select id="guestCount" onchange="updateGuestFields()">
+        <option value="">Select...</option>
+      </select>
+
+      <div id="guestFields"></div>
+
+      <label for="songReq" style="margin-top:24px;">Song request <span style="font-style:italic;font-size:10px;color:var(--taupe);letter-spacing:1px;">(optional)</span></label>
+      <input type="text" id="songReq" placeholder="What gets you on the dance floor?"/>
+
+      <p class="error-msg" id="guestError">Please fill in all guest names and meal choices.</p>
+      <button class="btn gold" onclick="submitRSVP()">Send my RSVP</button>
+    </div>
+
+    <!-- THANK YOU: Accepting -->
+    <div class="step" id="step-thanks-yes">
+      <div class="thank-you-icon">🥂</div>
+      <p class="thank-you-text">We can't wait to celebrate with you!</p>
+      <div class="divider"><span>✦</span></div>
+      <p class="thank-you-sub">
+        Your RSVP has been received.<br/>
+        We are counting down the days and<br/>
+        so excited to party with you on<br/><br/>
+        <strong style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--ink);">August 4, 2028</strong>
+      </p>
+    </div>
+
+    <!-- THANK YOU: Declining -->
+    <div class="step" id="step-thanks-no">
+      <div class="thank-you-icon">🌹</div>
+      <p class="thank-you-text">We'll miss you so much</p>
+      <div class="divider"><span>✦</span></div>
+      <p class="thank-you-sub sad">
+        We're sad you won't be able to join us,<br/>
+        but we truly appreciate you letting us know.<br/><br/>
+        You'll be in our hearts on our special day.
+      </p>
+    </div>
+
+    <p class="sheet-note" id="sheetNote">Victoria & Devin · August 4, 2028</p>
+
+  </div>
+</div>
+
+<script>
+  const CODES = {
+    'H1W9': 1,
+    'K4MV': 2,
+    'R7BX': 3,
+    'T2NJ': 4,
+    'G6QP': 5
+  };
+
+  const MEALS = ['Filet Mignon', 'Roasted Chicken', 'Pan-Seared Fish'];
+
+  let currentCode = '';
+  let maxGuests = 1;
+  let attendChoice = '';
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVmko9QjsyuxGo0oYtf8z3BhCMcpK1ZWgTUWdpYv4xFPOlIuEy8Z-CBkRttlsUJhobrg/exec';
+
+  function setStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const dots = document.getElementById('progressDots');
+    const note = document.getElementById('sheetNote');
+    if (['step-thanks-yes','step-thanks-no'].includes(id)) {
+      dots.style.display = 'none';
+    } else {
+      dots.style.display = 'flex';
+      const stepMap = { 'step-code': 0, 'step-attend': 1, 'step-guests': 2 };
+      const cur = stepMap[id] ?? 0;
+      [0,1,2].forEach(i => {
+        const d = document.getElementById('dot'+i);
+        d.className = 'dot' + (i < cur ? ' done' : i === cur ? ' active' : '');
+      });
+    }
+  }
+
+  function validateCode() {
+    const raw = document.getElementById('rsvpCode').value.trim().toUpperCase();
+    const err = document.getElementById('codeError');
+    if (CODES[raw] !== undefined) {
+      currentCode = raw;
+      maxGuests = CODES[raw];
+      err.classList.remove('show');
+      setStep('step-attend');
+    } else {
+      err.classList.add('show');
+      document.getElementById('rsvpCode').focus();
+    }
+  }
+
+  function selectAttend(choice) {
+    attendChoice = choice;
+    document.getElementById('opt-yes').classList.toggle('selected', choice === 'yes');
+    document.getElementById('opt-no').classList.toggle('selected', choice === 'no');
+    document.getElementById('attendError').classList.remove('show');
+  }
+
+  function submitAttend() {
+    if (!attendChoice) {
+      document.getElementById('attendError').classList.add('show');
+      return;
+    }
+    if (attendChoice === 'no') {
+      setStep('step-decline');
+    } else {
+      buildGuestDropdown();
+      setStep('step-guests');
+    }
+  }
+
+  function submitDecline() {
+    const name = document.getElementById('declineName').value.trim();
+    const err = document.getElementById('declineError');
+    if (!name) {
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+    sendToSheets({ code: currentCode, attending: 'No', declineName: name });
+    setStep('step-thanks-no');
+  }
+
+  function buildGuestDropdown() {
+    const sel = document.getElementById('guestCount');
+    sel.innerHTML = '<option value="">Select...</option>';
+    for (let i = 1; i <= maxGuests; i++) {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = i + (i === 1 ? ' guest' : ' guests');
+      sel.appendChild(o);
+    }
+    document.getElementById('guestFields').innerHTML = '';
+  }
+
+  function updateGuestFields() {
+    const n = parseInt(document.getElementById('guestCount').value) || 0;
+    const container = document.getElementById('guestFields');
+    container.innerHTML = '';
+    const ordinals = ['First','Second','Third','Fourth','Fifth'];
+    for (let i = 1; i <= n; i++) {
+      const block = document.createElement('div');
+      block.className = 'guest-block show';
+      block.innerHTML = `
+        <p class="guest-block-title">${ordinals[i-1]} Guest</p>
+        <label>Full name</label>
+        <input type="text" id="gname${i}" placeholder="Guest name"/>
+        <label style="margin-top:12px;">Meal selection</label>
+        <select id="gmeal${i}">
+          <option value="">Choose a meal...</option>
+          ${MEALS.map(m => `<option value="${m}">${m}</option>`).join('')}
+        </select>
+        <label style="margin-top:12px;">Dietary restrictions <span style="font-style:italic;font-size:10px;color:var(--taupe);letter-spacing:1px;">(optional)</span></label>
+        <input type="text" id="gdiet${i}" placeholder="None, vegetarian, allergy, etc."/>
+      `;
+      container.appendChild(block);
+    }
+  }
+
+  function submitRSVP() {
+    const n = parseInt(document.getElementById('guestCount').value) || 0;
+    const err = document.getElementById('guestError');
+    if (!n) { err.classList.add('show'); err.textContent = 'Please select how many guests are attending.'; return; }
+    let guests = [];
+    for (let i = 1; i <= n; i++) {
+      const name = document.getElementById('gname'+i).value.trim();
+      const meal = document.getElementById('gmeal'+i).value;
+      if (!name || !meal) {
+        err.classList.add('show');
+        err.textContent = 'Please fill in all guest names and meal choices.';
+        return;
+      }
+      const diet = document.getElementById('gdiet'+i).value.trim();
+      guests.push({ name, meal, diet });
+    }
+    err.classList.remove('show');
+    const song = document.getElementById('songReq').value.trim();
+    sendToSheets({ code: currentCode, attending: 'Yes', guestCount: n, guests, song });
+    setStep('step-thanks-yes');
+  }
+
+  function sendToSheets(data) {
+    if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') return;
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => {});
+  }
+
+  document.getElementById('rsvpCode').addEventListener('keydown', e => {
+    if (e.key === 'Enter') validateCode();
+  });
+  document.getElementById('rsvpCode').addEventListener('input', function() {
+    this.value = this.value.toUpperCase();
+    document.getElementById('codeError').classList.remove('show');
+  });
+</script>
+</body>
+</html>
