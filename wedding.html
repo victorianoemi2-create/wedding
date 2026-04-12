@@ -89,7 +89,7 @@ nav a:hover { color: var(--gold-light); }
 footer { position: relative; overflow: hidden; min-height: 500px; display: flex; flex-direction: column; }
 footer .footer-bg { position: absolute; inset: 0; background: url('Ending_Image.png') right 20% / cover no-repeat; }
 footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,30,0.65); }
-.footer-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: 600px; margin: 0 auto; width: 100%; padding: 80px 40px; }
+.footer-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: 100%; width: 100%; padding: 80px 10%; }
 .footer-closing { font-family: 'Great Vibes', cursive; font-size: clamp(38px, 5vw, 58px); color: #fff; line-height: 1.2; margin-bottom: 20px; }
 .footer-tagline { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
 .footer-col-title { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; margin-top: 28px; }
@@ -116,6 +116,22 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   .qa-right { padding: 40px 32px 60px; }
   .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 32px; }
 }
+
+/* MENU */
+#menu { background: var(--burgundy); padding: 110px 40px; text-align: center; }
+.menu-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.menu-title { font-family: 'Great Vibes', cursive; font-size: clamp(56px, 7vw, 88px); color: #fff; margin-bottom: 48px; line-height: 1; }
+.menu-inner { max-width: 680px; margin: 0 auto; }
+.menu-course { margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid rgba(201,168,76,0.15); }
+.menu-course:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.menu-course-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.menu-course-items { list-style: none; padding: 0; }
+.menu-course-items li { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.5vw, 22px); font-weight: 300; color: rgba(255,255,255,0.88); line-height: 1.6; margin-bottom: 10px; }
+.menu-course-items li span { display: block; font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; font-family: 'Jost', sans-serif; font-weight: 300; margin-top: 2px; }
+.menu-select-note { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mauve-light); margin-bottom: 16px; font-style: italic; }
+.menu-accompanied { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.menu-accompanied-item { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.7); }
+.menu-accompanied-item::before { content: '✦'; color: var(--gold); font-size: 10px; margin-right: 8px; vertical-align: middle; opacity: 0.6; }
 </style>
 </head>
 <body>
@@ -126,6 +142,7 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
     <a href="#details">The Details</a>
     <a href="#venue">The Venue</a>
     <a href="#destination">The Destination</a>
+    <a href="#menu">The Menu</a>
     <a href="#rsvp">RSVP</a>
     <a href="#qa">Q&A</a>
   </div>
@@ -191,6 +208,51 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   </div>
 </section>
 
+
+<!-- MENU -->
+<section id="menu">
+  <p class="menu-tag">dinner is served</p>
+  <h2 class="menu-title">The Menu</h2>
+  <div class="menu-inner">
+
+    <div class="menu-course">
+      <p class="menu-course-label">Passed Appetizers</p>
+      <ul class="menu-course-items">
+        <li>Mini Florida Blue Crab Cakes<span>with Cajun Remoulade</span></li>
+        <li>Truffle Mac and Cheese Bites</li>
+        <li>Beef Empanadas<span>with Sour Cream</span></li>
+        <li>Seared Ahi Tuna on Won Ton Crisps<span>with Pickled Ginger and Wasabi Drizzle</span></li>
+      </ul>
+    </div>
+
+    <div class="menu-course">
+      <p class="menu-course-label">Salad</p>
+      <ul class="menu-course-items">
+        <li>Rustic Italian Salad<span>Field Greens · Cherry Tomatoes · Olives · Cucumbers · Pepperoncini · Roasted Peppers · Bocconcini Mozzarella · Italian Vinaigrette</span></li>
+      </ul>
+    </div>
+
+    <div class="menu-course">
+      <p class="menu-course-label">Entrée</p>
+      <p class="menu-select-note">please select one when you RSVP</p>
+      <ul class="menu-course-items">
+        <li>Classic Filet</li>
+        <li>Spinach & Ricotta Stuffed Chicken</li>
+        <li>Stuffed Flounder<span>with Crabmeat & Shrimp in Creamy Lobster Sauce</span></li>
+      </ul>
+    </div>
+
+    <div class="menu-course">
+      <p class="menu-course-label">Accompanied By</p>
+      <div class="menu-accompanied">
+        <span class="menu-accompanied-item">Twice Baked Potatoes</span>
+        <span class="menu-accompanied-item">Green Bean Bundle</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- RSVP -->
 <section id="rsvp">
   <div class="rsvp-bg"></div>
@@ -198,6 +260,7 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   <div class="rsvp-inner">
     <h2 class="rsvp-title">RSVP</h2>
     <p class="rsvp-sub">Kindly reply by June 1, 2028</p>
+    <p class="rsvp-deadline">so we can finalize arrangements</p>
     <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,26px);font-weight:300;font-style:italic;color:var(--ink-mid);letter-spacing:2px;margin-bottom:40px;">We hope to see you from the altar.</p>
     <a href="https://victorianoemi2-create.github.io/rsvp/" target="_blank" class="rsvp-btn">Respond Here</a>
   </div>
@@ -248,4 +311,4 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
       <p class="footer-addr-name" style="margin-top:14px;">Hampton Inn &amp; Suites Tampa/Ybor City/Downtown</p>
       <p class="footer-addr-sub">1301 E 7th Ave, Tampa, FL 33605</p>
       <p class="footer-col-title">Contact</p>
-      <p class="footer-contact">Bride's Number: 973.873.5755<br/>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b6f7e6969626c7e7f7f72757c2329235b7c767a727735787476">terrywedding@gmail.com</a></p>
+      <p class="footer-contact">Bride's Number: 973.873.5755<br/>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b6f7e6969626c7e7f7f72757c2329235b7c767a727735787476">[email&#160;protected]</a></p>
