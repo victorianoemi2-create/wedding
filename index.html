@@ -33,13 +33,15 @@ html, body { height: 100%; overflow: hidden; font-family: 'Jost', sans-serif; }
 .hero-divider::before, .hero-divider::after { content: ''; width: 64px; height: 1px; background: rgba(201,168,76,0.45); }
 .hero-divider span { color: rgba(201,168,76,0.7); font-size: 14px; }
 .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: rgba(255,255,255,0.65); letter-spacing: 3px; margin-bottom: 48px; animation: fadeUp 1.6s 0.6s cubic-bezier(0.22,1,0.36,1) both; }
-.cta-btn { display: inline-block; padding: 16px 60px; border: 1px solid rgba(255,255,255,0.55); color: #fff; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; background: rgba(255,255,255,0.06); transition: all 0.35s ease; animation: fadeUp 1.6s 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+.cta-btn { display: inline-block; padding: 16px 60px; border: 1px solid rgba(255,255,255,0.55); color: #fff; font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; background: rgba(255,255,255,0.06); transition: all 0.35s ease; animation: fadeUp 1.6s 0.8s cubic-bezier(0.22,1,0.36,1) both, btnPulse 2.5s 2.5s ease-in-out infinite; }
 .cta-btn:hover { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.8); color: rgba(232,213,160,1); }
 .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: hintFade 1s 2.4s ease forwards; pointer-events: none; }
 @keyframes hintFade { to { opacity: 0.45; } }
 .scroll-hint span { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
 .scroll-hint .arrow { width: 1px; height: 32px; background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent); animation: arrowPulse 1.8s 2.4s ease-in-out infinite; }
 @keyframes arrowPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes btnPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); } 50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
+@media (min-width: 801px) { .hero-bg { background-position: center 20% !important; } }
 </style>
 </head>
 <body>
@@ -58,7 +60,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Jost', sans-serif; }
     <p class="hero-date">August 4, 2028 · Tampa, Florida</p>
     <a href="wedding.html" class="cta-btn">Love Begins Here</a>
   </div>
-  <div class="scroll-hint"><span>Enter</span><div class="arrow"></div></div>
+  
 </div>
 </body>
 </html>
