@@ -87,7 +87,7 @@ nav a:hover { color: var(--gold-light); }
 
 /* FOOTER */
 footer { position: relative; overflow: hidden; min-height: 500px; display: flex; flex-direction: column; }
-footer .footer-bg { position: absolute; inset: 0; background: url('Revised_Ending_Image.png') center center / cover no-repeat; }
+footer .footer-bg { position: absolute; inset: 0; background: url('Revised_Ending_Image.png') center top / cover no-repeat; }
 footer .footer-overlay { position: absolute; inset: 0; background: rgba(176,127,138,0.82); }
 .footer-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: 100%; width: 100%; padding: 80px 10%; }
 .footer-closing { font-family: 'Great Vibes', cursive; font-size: clamp(38px, 5vw, 58px); color: #fff; line-height: 1.2; margin-bottom: 20px; }
@@ -132,6 +132,7 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(176,127,
 .menu-accompanied { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 .menu-accompanied-item { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.7); }
 .menu-accompanied-item::before { content: '✦'; color: var(--gold); font-size: 10px; margin-right: 8px; vertical-align: middle; opacity: 0.6; }
+@media (min-width: 801px) { footer .footer-bg { background-position: center 15% !important; } }
 </style>
 </head>
 <body>
