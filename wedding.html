@@ -25,7 +25,7 @@ nav a:hover { color: var(--gold-light); }
 
 /* SECTION SHARED */
 .section-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 12px; }
-.gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 0 auto; opacity: 0.6; }
+.gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 0; opacity: 0.6; }
 
 /* DETAILS */
 #details { background: var(--ivory); padding: 120px 40px 100px; text-align: center; }
@@ -52,7 +52,7 @@ nav a:hover { color: var(--gold-light); }
 
 /* DESTINATION */
 #destination { position: relative; background: var(--mauve); padding: 110px 40px; overflow: hidden; }
-#destination::before { content: ''; position: absolute; inset: 0; background: url('CoupleAccomodations.png') center center / cover no-repeat; opacity: 0.35; }
+#destination::before { content: ''; position: absolute; inset: 0; background: url('CoupleAccomodations.png') center center / cover no-repeat; opacity: 0.72; }
 .destination-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
 .destination-title { font-family: 'Great Vibes', cursive; font-size: clamp(56px, 7vw, 88px); color: #fff; text-align: center; margin-bottom: 64px; text-shadow: 0 2px 24px rgba(0,0,0,0.15); }
 .destination-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -64,7 +64,7 @@ nav a:hover { color: var(--gold-light); }
 /* RSVP */
 #rsvp { position: relative; min-height: 520px; display: flex; align-items: center; overflow: hidden; }
 #rsvp .rsvp-bg { position: absolute; inset: 0; background: url('RSVP_Image.png') center center / cover no-repeat; }
-#rsvp .rsvp-overlay { position: absolute; inset: 0; background: rgba(245,240,232,0.7); }
+#rsvp .rsvp-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.88); }
 .rsvp-inner { position: relative; z-index: 2; width: 100%; text-align: center; padding: 110px 40px; }
 .rsvp-title { font-family: 'Great Vibes', cursive; font-size: clamp(96px, 14vw, 160px); color: var(--ink); line-height: 0.85; margin-bottom: 24px; }
 .rsvp-sub { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--olive); margin-bottom: 8px; }
@@ -74,7 +74,7 @@ nav a:hover { color: var(--gold-light); }
 
 /* Q&A */
 #qa { position: relative; background: var(--olive-dark); overflow: hidden; }
-#qa .qa-bg { position: absolute; inset: 0; background: url('QA_Image.png') left center / cover no-repeat; opacity: 0.35; }
+#qa .qa-bg { position: absolute; inset: 0; background: url('QA_Image.png') left center / cover no-repeat; opacity: 0.5; }
 .qa-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1.5fr; min-height: 640px; }
 .qa-left { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 40px; border-right: 1px solid rgba(201,168,76,0.18); }
 .qa-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(64px, 9vw, 108px); font-weight: 300; color: #fff; letter-spacing: -3px; line-height: 1; text-align: center; white-space: nowrap; }
@@ -88,8 +88,8 @@ nav a:hover { color: var(--gold-light); }
 /* FOOTER */
 footer { position: relative; overflow: hidden; min-height: 500px; display: flex; flex-direction: column; }
 footer .footer-bg { position: absolute; inset: 0; background: url('Ending_Image.png') right 20% / cover no-repeat; }
-footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,30,0.35); }
-.footer-inner { position: relative; z-index: 2; flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1000px; margin: 0 auto; width: 100%; padding: 90px 40px; align-items: center; }
+footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,30,0.65); }
+.footer-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: 600px; margin: 0 auto; width: 100%; padding: 80px 40px; }
 .footer-closing { font-family: 'Great Vibes', cursive; font-size: clamp(38px, 5vw, 58px); color: #fff; line-height: 1.2; margin-bottom: 20px; }
 .footer-tagline { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
 .footer-col-title { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; margin-top: 28px; }
@@ -138,13 +138,12 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   <p class="details-date">Friday, August 4<sup style="font-size:0.6em;vertical-align:super;">th</sup> 2028</p>
   <p class="details-venue">Rialto Theater</p>
   <p class="details-address">1617 N Franklin St &nbsp;·&nbsp; Tampa, FL 33602</p>
-  <p class="details-address" style="margin-bottom:40px;font-size:11px;">Complimentary parking available across the street in the public lot</p>
-  <div class="gold-rule" style="margin-bottom:48px;"></div>
+  <div class="gold-rule" style="margin-bottom:20px;"></div>
   <div class="details-stack">
     <div class="detail-block">
       <p class="detail-label">Ceremony</p>
       <p class="detail-value">4:00 PM</p>
-      <p class="detail-sub">We begin promptly at 4. Please arrive 10–15 minutes early.</p>
+      <p class="detail-sub">Please plan to arrive 15 minutes early</p>
     </div>
     <div class="detail-block">
       <p class="detail-label">Reception</p>
@@ -154,7 +153,6 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
     <div class="detail-block">
       <p class="detail-label">Dress Code</p>
       <p class="detail-value">Cocktail / Semi-Formal</p>
-      <p class="detail-sub">Attire is requested</p>
     </div>
   </div>
 </section>
@@ -198,9 +196,9 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   <div class="rsvp-bg"></div>
   <div class="rsvp-overlay"></div>
   <div class="rsvp-inner">
-    <h2 class="rsvp-title">RSVP</h3>
+    <h2 class="rsvp-title">RSVP</h2>
     <p class="rsvp-sub">Kindly reply by June 1, 2028</p>
-    <p class="rsvp-deadline">so we can finalize arrangements</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,26px);font-weight:300;font-style:italic;color:var(--ink-mid);letter-spacing:2px;margin-bottom:40px;">We hope to see you from the altar.</p>
     <a href="https://victorianoemi2-create.github.io/rsvp/" target="_blank" class="rsvp-btn">Respond Here</a>
   </div>
 </section>
@@ -214,7 +212,7 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
     </div>
     <div class="qa-right">
       <div class="qa-item">
-        <p class="qa-q">When do I need to RSVP by?</p>
+        <p class="qa-q">When do I need to RSVP?</p>
         <p class="qa-a">Kindly RSVP by June 1, 2028 so we can finalize arrangements.</p>
       </div>
       <div class="qa-item">
@@ -242,14 +240,12 @@ footer .footer-overlay { position: absolute; inset: 0; background: rgba(139,58,3
   <div class="footer-bg"></div>
   <div class="footer-overlay"></div>
   <div class="footer-inner">
-    <div>
-      <p class="footer-closing">We hope to see you from the altar.</p>
-    </div>
+
     <div>
       <p class="footer-col-title">Important Addresses</p>
       <p class="footer-addr-name">Rialto Theater</p>
-      <p class="footer-addr-sub">1617 N Franklin St, Tampa, FL 33602</p>
-      <p class="footer-addr-name" style="margin-top:14px;">Hampton Inn &amp; Suites Tampa/Ybor City/Downtown<br/>813.247.6700</p>
+      <p class="footer-addr-sub">1617 N Franklin St, Tampa, FL 33602<br/>813.247.6700</p>
+      <p class="footer-addr-name" style="margin-top:14px;">Hampton Inn &amp; Suites Tampa/Ybor City/Downtown</p>
       <p class="footer-addr-sub">1301 E 7th Ave, Tampa, FL 33605</p>
       <p class="footer-col-title">Contact</p>
-      <p class="footer-contact">Bride's Number: 973.873.5755<br/>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b6f7e6969626c7e7f7f72757c2329235b7c767a727735787476">terrywedding828@gmail.com</a></p>
+      <p class="footer-contact">Bride's Number: 973.873.5755<br/>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b6f7e6969626c7e7f7f72757c2329235b7c767a727735787476">terrywedding@gmail.com</a></p>
